@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Evento implements Serializable {
@@ -25,7 +25,7 @@ public class Evento implements Serializable {
 	private Double valorTotal;
 	private Double desconto;
 
-	@OneToOne
+	@OneToMany
 	@JoinColumn(name = "id_tema")
 	private Tema tema;
 

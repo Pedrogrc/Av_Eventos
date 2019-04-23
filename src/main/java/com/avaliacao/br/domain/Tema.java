@@ -1,7 +1,9 @@
 package com.avaliacao.br.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CollectionTable;
@@ -10,7 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Tema implements Serializable {
@@ -26,8 +28,8 @@ public class Tema implements Serializable {
 	@CollectionTable(name = "ITENS")
 	private Set<String> itens = new HashSet<>();
 
-	@OneToOne(mappedBy = "tema")
-	private Evento evento;
+	@OneToMany(mappedBy = "tema")
+	private List<Evento> eventos = new ArrayList<Evento>();
 
 	public Integer getId() {
 		return id;
@@ -61,21 +63,21 @@ public class Tema implements Serializable {
 		this.itens = itens;
 	}
 
-	public Evento getEvento() {
-		return evento;
+	public List<Evento> getEventos() {
+		return eventos;
 	}
 
-	public void setEvento(Evento evento) {
-		this.evento = evento;
+	public void setEventos(List<Evento> eventos) {
+		this.eventos = eventos;
 	}
 
-	public Tema(Integer id, String nome, String corDaToalha, Set<String> itens, Evento evento) {
+	public Tema(Integer id, String nome, String corDaToalha, Set<String> itens, List<Evento> eventos) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.corDaToalha = corDaToalha;
 		this.itens = itens;
-		this.evento = evento;
+		this.eventos = eventos;
 	}
 
 	@Override
